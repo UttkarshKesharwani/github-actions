@@ -1,0 +1,53 @@
+
+name: This is the CI/CD pipeline to ready the code for continous delievery
+
+on:
+  push:
+    branches: main
+
+
+jobs:
+
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do coding
+        run: echo "clone repo from github and perform some changes"
+        
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build the code
+        run: echo "Build the code so that it get executed by the browser"
+        
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test code
+        run: echo "Run the test cases for your code"
+      - name: Some extra test
+        run: echo "Perform the hard testing "
+  
+  push-to-dockerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker login
+        run: echo "Configuring the docker account"
+      - name: Run build command
+        run: echo "Running the docker build command"
+      - name: Push image
+        run: echo "Pushing the image to the docker hub"
+        
+  deploy-to-ec2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect ec2
+        run: echo "EC2 connected successfully"
+      - name: Pull image
+        run: echo "Pulling the image from the dockerhub"
+      - name: Create env file
+        run: echo "Env file created successfully on the server"
+      - name: Run container
+        run: echo "Running the docker container inside the ec2 server and serving the web app to the users"
+  
+    
