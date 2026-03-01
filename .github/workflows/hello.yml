@@ -1,0 +1,22 @@
+
+# This is the wrokflow name 
+name: Greet the user
+
+on: 
+  push:
+    branches: main
+
+jobs:
+
+  # This is where you define the name of the job
+  greet: 
+    # Runners(means a server where all your code build ,test and deploys  , so it is called runners and each job requires a new runner)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello to user
+        run: echo "Hello $USER to my word"
+
+      - name: Say hello to world
+        run: echo "Hello world, welcome to deveops journey"
+
+      
