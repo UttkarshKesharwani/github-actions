@@ -16,12 +16,14 @@ jobs:
         
   build:
     runs-on: ubuntu-latest
+    needs: code
     steps:
       - name: Build the code
         run: echo "Build the code so that it get executed by the browser"
         
   test:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Test code
         run: echo "Run the test cases for your code"
@@ -30,6 +32,7 @@ jobs:
   
   push-to-dockerhub:
     runs-on: ubuntu-latest
+    needs: [build,test]  #  needs can be array of string or simple string(job name)
     steps:
       - name: Docker login
         run: echo "Configuring the docker account"
@@ -40,6 +43,7 @@ jobs:
         
   deploy-to-ec2:
     runs-on: ubuntu-latest
+    needs: push-to-dockerhub
     steps:
       - name: Connect ec2
         run: echo "EC2 connected successfully"
