@@ -2,8 +2,9 @@
 name: This is the CI/CD pipeline to ready the code for continous delievery
 
 on:
-  push:
-    branches: main
+  # push:
+  #   branches: main
+  workflow_dispatch:
 
 
 jobs:
