@@ -1,0 +1,28 @@
+name: python
+
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+
+  validate: 
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: setup python 
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint code
+        run: flake app.py
