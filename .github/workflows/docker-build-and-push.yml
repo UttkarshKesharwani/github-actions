@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/python-CICD-app:${{ github.sha }}
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/python-cicd-app:${{ github.sha }}
