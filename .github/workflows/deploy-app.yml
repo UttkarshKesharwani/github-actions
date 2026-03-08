@@ -37,6 +37,6 @@ jobs:
       - name: Verify docker and docker compose installation
         run: docker --version && docker compose version
       - name: deploy app with docker compose
-        run: docker compose up -d 
+        run: docker compose up -d  
 
       
