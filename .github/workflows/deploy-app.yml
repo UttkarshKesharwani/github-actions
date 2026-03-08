@@ -33,8 +33,7 @@ jobs:
           sudo apt-get install -y docker.io
           sudo systemctl start docker
           sudo systemctl enable docker
-          sudo usermod -aG docker $USER
-          newgrp docker
+          sudo chmod 666 /var/run/docker.sock
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v2
         with:
