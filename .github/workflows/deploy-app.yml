@@ -10,38 +10,33 @@ on:
 
 jobs:
 
-  check:
+  build-and-push-to-dockerhub:
+    uses: ./.github/workflows/docker-build-and-push.yml
+    secrets: inherit # Instead of declaring every secret individually, you can inherit all secrets:
+    # secrets:
+    #   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    #   DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+
+  deploy-to-ec2:
     runs-on: self-hosted
+    needs: build-and-push-to-dockerhub
+    env:
+      DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+      IMAGE_TAG: ${{ github.sha }}
+
     steps:
-      - name: Check
-        run: echo "Hello"
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Set up Docker
+        run: sudo apt-get update -y && sudo apt-get install -y docker.io
+        run: systemctl start docker && systemctl enable docker && sudo usermod -aG docker $USER && newgrp docker 
+      - name: Set up Docker Compose
+        uses: docker/setup-compose-action@v2
+        with:
+          version: latest
+      - name: Verify docker and docker compose installation
+        run: docker --version && docker compose version
+      - name: deploy app with docker compose
+        run: docker compose up -d 
 
-  # build-and-push-to-dockerhub:
-  #   uses: ./.github/workflows/docker-build-and-push.yml
-  #   secrets: inherit # Instead of declaring every secret individually, you can inherit all secrets:
-  #   # secrets:
-  #   #   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  #   #   DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
-
-  # deploy-to-ec2:
-  #   runs-on: self-hosted
-  #   needs: build-and-push-to-dockerhub
-  #   env:
-  #     DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
-  #     IMAGE_TAG: ${{ github.sha }}
-
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v5
-  #     - name: Set up Docker
-  #       run: sudo apt-get update -y && sudo apt-get install -y docker.io
-  #       run: systemctl start docker && systemctl enable docker && sudo usermod -aG docker $USER && newgrp docker 
-  #     - name: Set up Docker Compose
-  #       uses: docker/setup-compose-action@v2
-  #       with:
-  #         version: latest
-  #     - name: Verify docker and docker compose installation
-  #       run: docker --version && docker compose version
-  #     - name: deploy app with docker compose
-  #       run: docker compose up -d 
-
+      
