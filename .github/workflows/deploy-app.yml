@@ -30,7 +30,10 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-docker-action@v5
       - name: Start and Enable Docker
-        run: sudo systemctl start docker && sudo systemctl enable docker && sudo usermod -aG docker $USER && newgrp docker 
+        run: |
+          sudo systemctl start docker
+          sudo systemctl enable docker
+          sudo chmod 666 /var/run/docker.sock
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v2
         with:
