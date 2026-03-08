@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v5
       - name: Set up Docker
         uses: docker/setup-docker-action@v5
+        run: systemctl start docker && systemctl enable docker && sudo usermod -aG docker $USER && newgrp docker
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v2
         with:
