@@ -12,6 +12,10 @@ jobs:
 
   build-and-push-to-dockerhub:
     uses: ./.github/workflows/docker-build-and-push.yml
+    secrets: inherit # Instead of declaring every secret individually, you can inherit all secrets:
+    # secrets:
+    #   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    #   DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
 
   deploy-to-ec2:
     runs-on: self-hosted
