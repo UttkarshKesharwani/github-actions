@@ -1,0 +1,37 @@
+
+name: Deploying app to the EC2 server
+
+
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+
+
+jobs:
+
+  build-and-push-to-dockerhub:
+    uses: ./.github/workflows/docker-build-and-push.yml
+
+  deploy-to-ec2:
+    runs-on: self-hosted
+    needs: build-and-push-to-dockerhub
+    env:
+      DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+      IMAGE_TAG: ${{ github.sha }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v5
+      - name: Set up Docker Compose
+        uses: docker/setup-compose-action@v2
+        with:
+          version: latest
+      - name: Verify docker and docker compose installation
+        run: docker --version && docker compose version
+      - name: deploy app with docker compose
+        run: docker compose up -d 
+
+      

@@ -1,0 +1,7 @@
+
+services:
+  web:
+    image: ${DOCKERHUB_USERNAME}/python-cicd-app:{IMAGE_TAG}
+    ports:
+      - "80:80"
+      

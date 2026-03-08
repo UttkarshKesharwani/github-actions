@@ -1,89 +1,253 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Zero To Hero</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 640px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .badge {
-            display: inline-block;
-            margin: 1rem 0 2rem;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            color: #c4b5fd;
-            letter-spacing: 0.05em;
-        }
-        .cards {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
-            flex: 1;
-        }
-        .card span {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            margin-bottom: 0.4rem;
-        }
-        .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Uttkarsh Kesharwani | Backend & DevOps Engineer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:"Poppins",sans-serif;
+background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+overflow:hidden;
+color:white;
+}
+
+/* animated gradient blobs */
+
+.blob{
+position:absolute;
+border-radius:50%;
+filter:blur(120px);
+opacity:0.5;
+animation:float 10s infinite alternate ease-in-out;
+}
+
+.blob1{
+width:400px;
+height:400px;
+background:#7b2ff7;
+top:-100px;
+left:-100px;
+}
+
+.blob2{
+width:350px;
+height:350px;
+background:#00d2ff;
+bottom:-120px;
+right:-120px;
+animation-delay:3s;
+}
+
+@keyframes float{
+from{transform:translateY(0px);}
+to{transform:translateY(80px);}
+}
+
+/* glass container */
+
+.container{
+backdrop-filter:blur(18px);
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:20px;
+padding:40px;
+width:900px;
+max-width:95%;
+text-align:center;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+animation:fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+h1{
+font-size:42px;
+font-weight:600;
+background:linear-gradient(90deg,#00d2ff,#7b2ff7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+margin-top:6px;
+color:#cbd5f5;
+font-size:15px;
+}
+
+.badge{
+display:inline-block;
+margin-top:15px;
+padding:6px 18px;
+border-radius:50px;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.2);
+font-size:13px;
+letter-spacing:1px;
+}
+
+/* cards */
+
+.cards{
+margin-top:35px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+}
+
+.card{
+padding:20px;
+border-radius:15px;
+background:rgba(255,255,255,0.07);
+border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+transition:all .35s ease;
+position:relative;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-8px) scale(1.05);
+background:rgba(255,255,255,0.12);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card span{
+display:block;
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#9ca3af;
+margin-bottom:6px;
+}
+
+.card strong{
+font-size:20px;
+}
+
+/* skill line */
+
+.skills{
+margin-top:30px;
+font-size:14px;
+color:#d1d5db;
+line-height:1.7;
+}
+
+/* footer */
+
+.footer{
+margin-top:35px;
+font-size:13px;
+color:#9ca3af;
+}
+
+.links{
+margin-bottom:8px;
+}
+
+.links a{
+color:#a78bfa;
+margin:0 12px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.links a:hover{
+color:#ffffff;
+}
+
+</style>
+
 </head>
+
 <body>
-    <div class="container">
-        <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
-        <div class="cards">
-            <div class="card">
-                <span>Framework</span>
-                <strong>Flask 3.1</strong>
-            </div>
-            <div class="card">
-                <span>Runtime</span>
-                <strong>Python 3.14</strong>
-            </div>
-            <div class="card">
-                <span>Deploy</span>
-                <strong>AWS ECS</strong>
-            </div>
-        </div>
-    </div>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<div class="container">
+
+<h1>Uttkarsh Kesharwani</h1>
+<div class="subtitle">Backend Developer • DevOps Enthusiast</div>
+
+<div class="badge">Building Scalable Systems 🚀</div>
+
+<div class="cards">
+
+<div class="card">
+<span>Backend</span>
+<strong>Node.js</strong>
+</div>
+
+<div class="card">
+<span>Database</span>
+<strong>MongoDB / MySQL</strong>
+</div>
+
+<div class="card">
+<span>Containers</span>
+<strong>Docker</strong>
+</div>
+
+<div class="card">
+<span>Cloud</span>
+<strong>AWS</strong>
+</div>
+
+<div class="card">
+<span>Messaging</span>
+<strong>RabbitMQ</strong>
+</div>
+
+<div class="card">
+<span>CI/CD</span>
+<strong>GitHub Actions</strong>
+</div>
+
+</div>
+
+<div class="skills">
+Building backend systems • Distributed architecture • CI/CD pipelines • Containerized deployments • Cloud infrastructure
+</div>
+
+<div class="footer">
+
+<div class="links">
+<a href="#">GitHub</a>
+<a href="#">LinkedIn</a>
+<a href="#">Portfolio</a>
+</div>
+
+© 2026 Uttkarsh Kesharwani
+
+</div>
+
+</div>
+
 </body>
 </html>
